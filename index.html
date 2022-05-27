@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin panel</title>
+
+</head>
+
+
+<body>
+    <form id="form">
+        <input id="name" type="text" placeholder="Product name">
+        <input id="category" type="text" placeholder="Category">
+        <input id="image" type="text" placeholder="Image url">
+        <input id="price" type="text" placeholder="Price">
+        <select name="" id="gender">
+            <option value="none">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <select name="" id="sold">
+            <option value="false">Sold</option>
+        </select>
+        
+            <a href="product.html"><input id="add" type="">SUBMIT</a>
+            
+        
+        
+    </form>
+</body>
+</html>
+<script>
+    const form = document.getElementById("form");
+const productArray = JSON.parse(localStorage.getItem("Products")) || [];
+
+form.addEventListener('submit', addProducts);
+function addProducts(){
+    event.preventDefault();
+    name = form.name.value;
+    category = form.category.value;
+    image = form.image.value;
+    price = form.price.value;
+    gender = form.gender.value;
+    sold = form.sold.value;
+    let product = new CreatProductObj(name,category,image,price,gender,sold);
+    productArray.push(product);
+    localStorage.setItem('Products',JSON.stringify(productArray));
+    window.location.reload();
+}
+
+function CreatProductObj(name,category,image,price,gender,sold){
+    this.name = name;
+    this.category = category;
+    this.image = image;
+    this.price = price;
+    this.gender = gender;
+    this.sold = sold;
+} 
+</script>  
